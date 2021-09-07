@@ -1,0 +1,26 @@
+{
+  "name": "graphql-tutorial",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/phuc-create/GraphQL-Learning.git",
+  "author": "Nguyễn Hữu Phúc <phuc82908@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --exec ts-node server.ts",
+    "start":"ts-node server.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.7.13",
+    "apollo-server-express": "^3.3.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^15.5.3",
+    "typescript": "^4.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.1"
+  }
+}

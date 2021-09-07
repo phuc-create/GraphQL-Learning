@@ -1,11 +1,11 @@
-const express = require("express");
-const { ApolloServer } = require("apollo-server-express");
-const typeDefs = require("./schema");
-const resolvers = require("./resolvers");
+import express from "express";
+import { ApolloServer } from "apollo-server-express";
+import { typeDefs } from "./schema";
+import { resolvers } from "./resolvers";
 
 const app = express();
 app.use(express.json());
-let apoloServer = null;
+let apoloServer: any = null;
 const startServer = async () => {
   try {
     apoloServer = new ApolloServer({ typeDefs, resolvers });

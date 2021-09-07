@@ -1,5 +1,5 @@
-const { gql } = require("apollo-server-express");
-const typeDefs = gql`
+import { gql } from "apollo-server-express";
+export const typeDefs = gql`
   type Book {
     id: ID
     name: String
@@ -9,6 +9,7 @@ const typeDefs = gql`
   type Author {
     id: ID!
     nameAuthor: String
+    books: [Book]
   }
   #BELOW IS ROOT QUERY
   type Query {
@@ -18,4 +19,3 @@ const typeDefs = gql`
     author(authorId: ID!): Author
   }
 `;
-module.exports = typeDefs;
