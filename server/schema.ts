@@ -18,4 +18,10 @@ export const typeDefs = gql`
     authors: [Author]
     author(authorId: ID!): Author
   }
+  type Mutation{
+    createAuthor(nameAuthor:String):Author,
+    createBook(
+    name: String,
+    authorId: ID,):Book
+  }
 `;

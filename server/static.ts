@@ -1,10 +1,10 @@
-const authors = [
+export const authors = [
   { id: 1, nameAuthor: "Steven Joly" },
   { id: 2, nameAuthor: "Roxan Davinci" },
   { id: 3, nameAuthor: "Alexander David" },
   { id: 4, nameAuthor: "Michali Kay" },
 ];
-const books = [
+export const books = [
   {
     id: 1,
     name: "Beyond the sea",
@@ -51,4 +51,3 @@ const books = [
     authorId: 2,
   },
 ];
-module.exports = { books, authors };
