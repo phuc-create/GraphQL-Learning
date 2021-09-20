@@ -1,8 +1,13 @@
-.header {
-  &__logo {
-    font-size: 20px;
-  }
-  &__navbar {
-    font-size: 20px;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: 'Poppins', sans-serif; 
 }
+body{
+  position: relative;
+  background-color: #2d3436 !important;
+}
+@import "./Styles/dashboard";
+@import "./Styles/auth"
