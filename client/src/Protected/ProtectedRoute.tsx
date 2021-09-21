@@ -8,15 +8,15 @@ const ProtectedRoute = ({
   component: Component,
   ...rest
 }: ProtectedRouteProps) => {
-  const { user, isAuthenticated } = useSelector(
+  const { inforUser, isAuthenticated } = useSelector(
     (state: { user: any }) => state.user
   );
-  console.log(user, isAuthenticated);
+  console.log(inforUser, isAuthenticated);
   return (
     <Route
       {...rest}
       render={(props) =>
-        user !== null && isAuthenticated !== false ? (
+        inforUser !== null && isAuthenticated !== false ? (
           <Component {...rest} {...props} />
         ) : (
           <Redirect to="/o2auth" />

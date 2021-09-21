@@ -1,12 +1,12 @@
+import { CreateUser_Mutation } from "../../Hasura/Mutation";
+import {
+  CheckLoginUser_Query,
+  CheckUserExist_Query,
+  User_Query,
+} from "../../Hasura/Query";
 import { graphqlRequest } from "../../Utils/Apis";
 import { setLocalStorageUser } from "../../Utils/Auth";
 import { BASE_GQL } from "../../Utils/BaseGraphql";
-import {
-  CheckingLoginUser,
-  CheckingUserExist,
-  CreateUser,
-  FetchAllInforOfSingleUser,
-} from "../gql";
 import {
   FETCH_DATA_USER,
   FETCH_DATA_USER_ERROR,
@@ -24,15 +24,15 @@ const graphqlApiOptions = {
   url: `${BASE_GQL.base}`,
 };
 
-export const getAllInforOfUser = (idUser: string) => async (dispatch: any) => {
-  const id = { idUser };
+export const getAllInforOfUser = (id: string) => async (dispatch: any) => {
+  const idUser = { id };
   try {
     dispatch({ type: FETCH_DATA_USER });
 
     const { data }: any = await graphqlRequest(
       graphqlApiOptions,
-      FetchAllInforOfSingleUser,
-      id
+      User_Query,
+      idUser
     );
     if (data) {
       dispatch({
@@ -54,7 +54,7 @@ export const LoginUser = (loginInfor: any) => async (dispatch: any) => {
     const variables = { username, password };
     const { data }: any = await graphqlRequest(
       graphqlApiOptions,
-      CheckingLoginUser,
+      CheckLoginUser_Query,
       variables
     );
     if (data.data.gql_owe_Users.length > 0) {
@@ -86,7 +86,7 @@ export const RegisterUser = (registerInfor: any) => async (dispatch: any) => {
     const variables = { username };
     const { data }: any = await graphqlRequest(
       graphqlApiOptions,
-      CheckingUserExist,
+      CheckUserExist_Query,
       variables
     );
     if (data.data.gql_owe_Users.length > 0) {
@@ -96,7 +96,7 @@ export const RegisterUser = (registerInfor: any) => async (dispatch: any) => {
       const variables = { username, password };
       const { data }: any = await graphqlRequest(
         graphqlApiOptions,
-        CreateUser,
+        CreateUser_Mutation,
         variables
       );
       if (data) {

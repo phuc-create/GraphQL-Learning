@@ -33,7 +33,12 @@ const UserReducer = (
         inforUser: payload,
       };
     case FETCH_DATA_USER_ERROR:
-      return { ...state, isLoading: false, error: payload };
+      return {
+        ...state,
+        isLoading: false,
+        isAuthenticated: false,
+        error: payload,
+      };
     case LOGIN_USER_REQUEST:
       return { ...state, isLoading: true };
     case LOGIN_USER_SUCCESS:
@@ -44,7 +49,7 @@ const UserReducer = (
         inforUser: payload,
       };
     case LOGIN_USER_ERROR:
-      return { ...state, isLoading: false };
+      return { ...state, isLoading: false, isAuthenticated: false };
     case REGISTER_USER_REQUEST:
       return { ...state, isLoading: true };
     case REGISTER_USER_SUCCESS:
@@ -55,7 +60,12 @@ const UserReducer = (
         inforUser: payload,
       };
     case REGISTER_USER_ERROR:
-      return { ...state, isLoading: false, errors: payload };
+      return {
+        ...state,
+        isLoading: false,
+        isAuthenticated: false,
+        errors: payload,
+      };
     default:
       return state;
   }

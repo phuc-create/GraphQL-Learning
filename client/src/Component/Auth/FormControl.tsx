@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import { FieldAttributes, Formik, useField } from "formik";
 import { useContext, useState } from "react";
 import { Ctx } from "../../Contexts/Context";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { LoginUser, RegisterUser } from "../../redux/actions/User.action";
 
 const MyTextField: React.FC<FieldAttributes<{ label: string }>> = ({
@@ -123,8 +123,7 @@ const FormControl = () => {
     errTxt: "",
   });
   const dispatch = useDispatch();
-  const user = useSelector((state: { user: any }) => state.user);
-  console.log(user);
+  // const user = useSelector((state: { user: any }) => state.user);
   const { values, isLogin, handleChangeValue } = useContext(Ctx);
   const { username, password, passwordConfirm } = values;
   const submitForm = (e: { preventDefault: () => void }) => {
