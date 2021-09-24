@@ -35,7 +35,6 @@ export const RegisterForm = () => {
       }}
       onSubmit={(data, { setSubmitting }) => {
         setSubmitting(true);
-        console.log(data);
         setSubmitting(false);
       }}
     >
@@ -81,7 +80,6 @@ export const LoginForm = () => {
       }}
       onSubmit={(data, { setSubmitting }) => {
         setSubmitting(true);
-        console.log(data);
         setSubmitting(false);
       }}
     >
@@ -135,10 +133,8 @@ const FormControl = () => {
       });
       return;
     }
-    console.log(values);
     if (!passwordConfirm) {
-      console.log("login start");
-
+      localStorage.removeItem("user")
       dispatch(LoginUser(values));
     } else if (passwordConfirm !== password) {
       setErrs({
@@ -147,6 +143,7 @@ const FormControl = () => {
       });
       return;
     } else {
+      localStorage.removeItem("user")
       dispatch(RegisterUser(values));
     }
   };

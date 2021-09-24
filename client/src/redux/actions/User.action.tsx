@@ -24,8 +24,8 @@ const graphqlApiOptions = {
   url: `${BASE_GQL.base}`,
 };
 
-export const getAllInforOfUser = (id: string) => async (dispatch: any) => {
-  const idUser = { id };
+export const getAllInforOfUser = () => async (dispatch: any) => {
+  const idUser = { id:localStorage["user"] };
   try {
     dispatch({ type: FETCH_DATA_USER });
 
@@ -64,6 +64,7 @@ export const LoginUser = (loginInfor: any) => async (dispatch: any) => {
         type: LOGIN_USER_SUCCESS,
         payload: data.data.gql_owe_Users[0],
       });
+      window.location.href = "/";
     } else {
       dispatch({
         type: LOGIN_USER_ERROR,

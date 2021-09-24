@@ -29,11 +29,35 @@ export const CreateUser_Mutation = `mutation CreateUser($username:String!,$passw
 //   "Password": "1234"
 // }
 //THIS MUTATION DOING 2 ACTIONS FOR UPDATE WHEN DRAW AND UPDATE WHEN TRANSFER
-export const UpdateBalance_Mutation = `mutation UpdateBalance_Mutation($id:uuid!,$draw:Int!){
-  update_gql_owe_Users(where:{id:{_eq:$id}},_set:{balances:$draw}){
-    returning{
-      balances
+export const UpdateBalance_Mutation = `mutation UpdateBalance_Mutation($id: uuid!, $draw: Int!) {
+  update_gql_owe_Users(where: {id: {_eq: $id}}, _set: {balances: $draw}) {
+    returning {
+       id
+    username
+    password
+    balances
+    Saves {
+      id_save
+      received
+      save_date
+      save_script
     }
+    Owes {
+      id_owe
+      date_get
+      date_back
+      money_owed
+      script_owe
+    }
+    draws {
+      id_draw
+      total_draw
+      date_draw
+      before_balance
+      after_balance
+      script_draw
+    }
+  }
   }
 }`;
 // DEMO VARIABLES

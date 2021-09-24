@@ -1,4 +1,4 @@
-export const User_Query = `query UserInfor($id: uuid!) {
+export const User_Query: any = `query UserInfor($id: uuid!) {
   gql_owe_Users_by_pk(id: $id) {
     id
     username

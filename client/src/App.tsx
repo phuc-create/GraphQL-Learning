@@ -8,11 +8,10 @@ import Owe from "./Component/Pages/Owe";
 import ProtectedRoute from "./Protected/ProtectedRoute";
 
 const App: React.FC = () => {
-  const idUserDemo = localStorage["user"];
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllInforOfUser(idUserDemo));
-  }, [dispatch, idUserDemo]);
+    dispatch(getAllInforOfUser());
+  }, [dispatch]);
   return (
     <Router>
       <Switch>
