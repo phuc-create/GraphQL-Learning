@@ -69,10 +69,12 @@ export const AddDrawHistory_Mutation = `mutation AddDrawHistory_Mutation($id:uui
   insert_gql_owe_draw(objects: {id_user: $id, total_draw: $total, script_draw: $script,before_balance:$before,after_balance:$after}){
     returning{
       id_user
+      id_draw
       total_draw
-      script_draw
+      date_draw
       before_balance
       after_balance
+      script_draw
     }
   }
 }`;
@@ -85,3 +87,20 @@ export const AddDrawHistory_Mutation = `mutation AddDrawHistory_Mutation($id:uui
 //   "after": 300000
 
 // }
+export const DeleteDrawHistory_Mutation = `mutation DeleteDrawHistory_Mutation($id: uuid!, $idDraw: uuid!) {
+  delete_gql_owe_draw(where: {id_user: {_eq:$id}, id_draw: {_eq:$idDraw}}) {
+    returning {
+      id_user
+      id_draw
+      total_draw
+      script_draw
+      after_balance
+      before_balance
+    }
+  }
+}`
+// DEMO VARIABLES
+// {
+//   "id": "asd",
+//     "idDraw": "ASDA"
+//   }
