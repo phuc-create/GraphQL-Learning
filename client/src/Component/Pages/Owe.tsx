@@ -1,6 +1,5 @@
-import React from "react";
-import { ApigraphQL } from "../../ApolloConfig";
-import OweUser from "../Oweuser/OweUser";
+// import { ApigraphQL } from "../../ApolloConfig";
+import OweUser from "../Oweuser/OweUser"
 
 const Owe = () => {
   return (

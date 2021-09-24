@@ -21,6 +21,7 @@ import {
   Box,
   TextField,
   Alert,
+  CircularProgress,
 } from '@mui/material'
 import { NumFormatter } from '../../Utils/NumberFormarter'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
@@ -52,7 +53,7 @@ enum Type {
 }
 const CurrentInforSaved = () => {
   const dispatch = useDispatch()
-  const { inforUser } = useSelector((state: { user: any }) => state.user)
+  const { inforUser, isLoading } = useSelector((state: { user: any }) => state.user)
   const { username, draws, balances } = inforUser
   const [open, setOpen] = useState(false)
   const [types, setTypes] = useState<Type>(Type.draw)
@@ -61,6 +62,7 @@ const CurrentInforSaved = () => {
     setOpen(true)
     setTypes(type)
   }
+  const handleClose = () => setOpen(false)
   const [drawValues, setDrawValues] = useState({
     totalDraw: 0,
     description: '',
@@ -80,21 +82,19 @@ const CurrentInforSaved = () => {
       return
     } else {
       setAlert(false)
-      console.log('yeah you are submited')
-      console.log(drawValues)
       // id:any,total: any,script: any,before: any,after: any
+      const afterBalance = inforUser.balances - drawValues.totalDraw
       const drawInfor = {
         id: inforUser.id,
         total: drawValues.totalDraw,
         script: drawValues.description,
         before: inforUser.balances,
-        after: inforUser.balances - drawValues.totalDraw,
+        after: afterBalance,
       }
       dispatch(drawMoneyAction(drawInfor))
     }
   }
-  console.log(inforUser)
-  const handleClose = () => setOpen(false)
+
   return (
     <>
       <Card sx={{ maxWidth: 500 }}>
@@ -130,6 +130,9 @@ const CurrentInforSaved = () => {
         handleChangeDrawValues={handleChangeDrawValues}
         onSubmit={handleSubmmitDrawMoney}
         alert={alert}
+        loading={
+          isLoading
+        }
       />
     </>
   )
@@ -139,10 +142,10 @@ const ListDraw2 = ({ draws }: any) => {
   const dataCellmap = [
     { name: 'Total Draw' },
     {
-      name: 'After Balances',
+      name: 'Before Balances',
     },
     {
-      name: 'Before Balances',
+      name: 'After Balances',
     },
     {
       name: 'Title',
@@ -190,11 +193,11 @@ const ListDraw2 = ({ draws }: any) => {
                   <TableCell align='center'>
                     {NumFormatter.format(row.total_draw)}
                   </TableCell>
-                  <TableCell align='center'>
-                    {NumFormatter.format(row.after_balance)}
-                  </TableCell>
                   <TableCell align="center">
                     {NumFormatter.format(row.before_balance)}
+                  </TableCell>
+                  <TableCell align='center'>
+                    {NumFormatter.format(row.after_balance)}
                   </TableCell>
                   <TableCell align="center">{row.script_draw}</TableCell>
                   <TableCell align="center">
@@ -221,7 +224,8 @@ interface ModelProps {
   }
   handleChangeDrawValues: (e: any) => void
   onSubmit: (e: any) => void
-  alert: boolean
+  alert: boolean,
+  loading: boolean
 }
 const ModelTransferMoney: React.FC<ModelProps> = ({
   open,
@@ -231,6 +235,7 @@ const ModelTransferMoney: React.FC<ModelProps> = ({
   handleChangeDrawValues,
   onSubmit,
   alert,
+  loading
 }) => {
   const style = {
     position: "absolute" as "absolute",
@@ -295,6 +300,13 @@ const ModelTransferMoney: React.FC<ModelProps> = ({
           <Button variant="outlined" type="submit">
             Confirm
           </Button>
+          {loading
+            ? (
+              <Box sx={{ display: 'flex' }}>
+                <CircularProgress />
+              </Box>
+            ) : null
+          }
         </Box>
       </Modal>
     )

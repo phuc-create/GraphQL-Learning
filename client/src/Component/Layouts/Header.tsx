@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
 import { Ctx } from "../../Contexts/Context";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 interface HeaderProps {
   auth?: boolean;
   infor?: any;

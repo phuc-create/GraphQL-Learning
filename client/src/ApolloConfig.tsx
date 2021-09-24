@@ -1,8 +1,6 @@
 import {
   ApolloClient,
   InMemoryCache,
-  OperationVariables,
-  QueryHookOptions,
   useQuery,
 } from "@apollo/client";
 import { User_Query } from "./Hasura/Query";
@@ -12,7 +10,7 @@ const client = new ApolloClient({
 });
 
 const ApigraphQL = () => {
-  const idUserDemo = localStorage["user"];
+  // const idUserDemo = localStorage["user"];
   const { loading, error, data } = useQuery(User_Query);
 
   if (error) return <div>{JSON.stringify(error, null, 2)}</div>;

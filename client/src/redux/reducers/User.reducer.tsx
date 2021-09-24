@@ -1,5 +1,7 @@
 import {
+  DRAW_USER_ERROR,
   DRAW_USER_REQUEST,
+  DRAW_USER_SUCCESS,
   FETCH_DATA_USER,
   FETCH_DATA_USER_ERROR,
   FETCH_DATA_USER_SUCCESS,
@@ -9,68 +11,78 @@ import {
   REGISTER_USER_ERROR,
   REGISTER_USER_REQUEST,
   REGISTER_USER_SUCCESS,
-} from "../Types";
+} from "../Types"
 
 const initialValues = {
   isLoading: false,
   isAuthenticated: false,
   inforUser: {},
   errors: null,
-};
+}
 
 const UserReducer = (
   state = initialValues,
   action: { type: any; payload: any }
 ) => {
-  const { type, payload } = action;
+  const { type, payload } = action
   switch (type) {
     case FETCH_DATA_USER:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true }
     case FETCH_DATA_USER_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isAuthenticated: true,
         inforUser: payload,
-      };
+      }
     case FETCH_DATA_USER_ERROR:
       return {
         ...state,
         isLoading: false,
         isAuthenticated: false,
         error: payload,
-      };
+      }
     case LOGIN_USER_REQUEST:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true }
     case LOGIN_USER_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isAuthenticated: true,
         inforUser: payload,
-      };
+      }
     case LOGIN_USER_ERROR:
-      return { ...state, isLoading: false, isAuthenticated: false };
+      return { ...state, isLoading: false, isAuthenticated: false }
     case REGISTER_USER_REQUEST:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true }
     case REGISTER_USER_SUCCESS:
       return {
         ...state,
         isLoading: false,
         isAuthenticated: true,
         inforUser: payload,
-      };
+      }
     case REGISTER_USER_ERROR:
       return {
         ...state,
         isLoading: false,
         isAuthenticated: false,
         errors: payload,
-      };
+      }
     case DRAW_USER_REQUEST:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true }
+    case DRAW_USER_SUCCESS:
+      return {
+        ...state,
+        inforUser: payload,
+      }
+    case DRAW_USER_ERROR:
+      return {
+        ...state,
+        errors: payload,
+      }
     default:
-      return state;
+      return state
   }
-};
-export default UserReducer;
+}
+export default UserReducer
