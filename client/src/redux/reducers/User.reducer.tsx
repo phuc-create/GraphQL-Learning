@@ -1,4 +1,5 @@
 import {
+  DRAW_USER_REQUEST,
   FETCH_DATA_USER,
   FETCH_DATA_USER_ERROR,
   FETCH_DATA_USER_SUCCESS,
@@ -66,6 +67,8 @@ const UserReducer = (
         isAuthenticated: false,
         errors: payload,
       };
+    case DRAW_USER_REQUEST:
+      return { ...state, isLoading: true };
     default:
       return state;
   }

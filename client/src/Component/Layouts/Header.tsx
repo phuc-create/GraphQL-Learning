@@ -9,14 +9,21 @@ import {
 } from "@mui/material";
 import MonetizationOnRoundedIcon from "@mui/icons-material/MonetizationOnRounded";
 import { Ctx } from "../../Contexts/Context";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 interface HeaderProps {
   auth?: boolean;
   infor?: any;
 }
 const Header: React.FC<HeaderProps> = ({ auth, infor }) => {
   const { isLogin, checkLogin } = useContext(Ctx);
-
+  const handleLogoutUser = () => {
+    localStorage.removeItem("user");
+    if (localStorage["user"]) {
+      localStorage.removeItem("user");
+    } else {
+      window.location.href = "o2auth"
+    }
+  }
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -48,7 +55,7 @@ const Header: React.FC<HeaderProps> = ({ auth, infor }) => {
                   </Link>
                 </Button>
                 &nbsp;&nbsp;
-                <Button variant="outlined" className="link-control">
+                <Button variant="outlined" className="link-control" onClick={() => handleLogoutUser()}>
                   Exit
                 </Button>
                 &nbsp;&nbsp;

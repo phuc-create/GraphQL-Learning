@@ -1,10 +1,8 @@
 import { createContext, useState } from "react";
 
 export const Ctx = createContext<any>({});
-interface Children {
-  children: any;
-}
-const ContextProvider: React.FC<Children> = ({ children }) => {
+
+const ContextProvider: React.FC = ({ children }) => {
   const [isLogin, setIslogin] = useState<boolean>(true);
   const [values, setValues] = useState({
     username: "",
