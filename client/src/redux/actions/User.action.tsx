@@ -25,7 +25,7 @@ const graphqlApiOptions = {
 };
 
 export const getAllInforOfUser = () => async (dispatch: any) => {
-  const idUser = { id:localStorage["user"] };
+  const idUser = { id: localStorage["user"] };
   try {
     dispatch({ type: FETCH_DATA_USER });
 
@@ -39,6 +39,7 @@ export const getAllInforOfUser = () => async (dispatch: any) => {
         type: FETCH_DATA_USER_SUCCESS,
         payload: data.data.gql_owe_Users_by_pk,
       });
+      console.log(data)
     }
   } catch (error) {
     dispatch({

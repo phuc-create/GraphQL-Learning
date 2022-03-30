@@ -44,6 +44,12 @@ const Header: React.FC<HeaderProps> = ({ auth, infor }) => {
             {auth ? (
               <>
                 <Button variant="outlined">
+                  <Link className="link-control" to="/">
+                    Save Money
+                  </Link>
+                </Button>
+                &nbsp;&nbsp;
+                <Button variant="outlined">
                   <Link className="link-control" to="/debt">
                     Your Debts
                   </Link>

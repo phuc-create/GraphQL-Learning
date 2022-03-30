@@ -1,7 +1,7 @@
 import {
-  DRAW_USER_ERROR,
-  DRAW_USER_REQUEST,
-  DRAW_USER_SUCCESS,
+  DRAW_ERROR,
+  DRAW_REQUEST,
+  DRAW_SUCCESS,
   FETCH_DATA_USER,
   FETCH_DATA_USER_ERROR,
   FETCH_DATA_USER_SUCCESS,
@@ -33,7 +33,12 @@ const UserReducer = (
         ...state,
         isLoading: false,
         isAuthenticated: true,
-        inforUser: payload,
+        inforUser: {
+          id: payload.id,
+          balances: payload.balances,
+          username: payload.username,
+          password: payload.password
+        },
       }
     case FETCH_DATA_USER_ERROR:
       return {
@@ -49,7 +54,12 @@ const UserReducer = (
         ...state,
         isLoading: false,
         isAuthenticated: true,
-        inforUser: payload,
+        inforUser: {
+          id: payload.id,
+          balances: payload.balances,
+          username: payload.username,
+          password: payload.password
+        },
       }
     case LOGIN_USER_ERROR:
       return { ...state, isLoading: false, isAuthenticated: false }
@@ -60,25 +70,18 @@ const UserReducer = (
         ...state,
         isLoading: false,
         isAuthenticated: true,
-        inforUser: payload,
+        inforUser: {
+          id: payload.id,
+          balances: payload.balances,
+          username: payload.username,
+          password: payload.password
+        },
       }
     case REGISTER_USER_ERROR:
       return {
         ...state,
         isLoading: false,
         isAuthenticated: false,
-        errors: payload,
-      }
-    case DRAW_USER_REQUEST:
-      return { ...state, isLoading: true }
-    case DRAW_USER_SUCCESS:
-      return {
-        ...state,
-        inforUser: payload,
-      }
-    case DRAW_USER_ERROR:
-      return {
-        ...state,
         errors: payload,
       }
     default:

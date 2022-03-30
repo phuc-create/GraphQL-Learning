@@ -4,6 +4,10 @@ export const User_Query: any = `query UserInfor($id: uuid!) {
     username
     password
     balances
+  }
+}`
+export const MoneyUser_Query = `query UserMoneyInfor($id: uuid!) {
+  gql_owe_Users_by_pk(id: $id) {
     Saves {
       id_save
       received
@@ -26,7 +30,7 @@ export const User_Query: any = `query UserInfor($id: uuid!) {
       script_draw
     }
   }
-}`;
+}`
 export const FetchOweByUser = `query FecthData($idUser: uuid!) {
   gql_owe_Owe(where: {id_user: {_eq: $idUser}}) {
     id_user
